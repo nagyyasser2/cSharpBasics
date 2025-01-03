@@ -1,58 +1,190 @@
-# C# Basics.
-In The Project We Will Dive Into C#.
+# Primitive Data Types
 
-![C# Image](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBW8KGQITjCa13_RlLYR8cz3FwRcc_oayxeg&s)
-
----
-
-## Table of content :
-
-- Introduction 
-- What is C#?
-- What is ASP.NET?
-- What is CLR?
-- Primitive Types and Expressions
-- Not-Primitive Types
-- Control Flow
-- Arrays And Lists
-- Working With Dates
-- Working With Text
-- Working With Files
-- Debugging
-
-
->[!NOTE]
-> You Will Find Each Of These Sections In Separate Branches.
+This document serves as a comprehensive guide to primitive data types, covering key concepts and best practices.
 
 ---
 
-## What is C#?
-C# (pronounced "C-Sharp") is a modern, object-oriented programming language developed by Microsoft as part of the .NET framework. It is designed to be simple, powerful, and versatile, making it ideal for a variety of applications, including desktop applications, web development, and game programming.
-
-### Key Features:
-- **Object-Oriented:** C# is built around the principles of object-oriented programming, such as encapsulation, inheritance, and polymorphism.
-- **Type-Safe:** C# ensures type safety, reducing runtime errors and making code more reliable.
-- **Rich Library:** C# provides a robust library of pre-built functions to accelerate development.
-- **Cross-Platform:** With .NET Core and .NET 6+, C# applications can run on Windows, macOS, and Linux.
-
----
-
-## What is ASP.NET?
-ASP.NET is a free, open-source web framework developed by Microsoft for building dynamic web applications, APIs, and microservices. It is a part of the .NET framework and supports the development of high-performance, scalable web solutions.
-
-### Key Features:
-- **MVC Pattern:** Offers a Model-View-Controller architecture to separate concerns in application development.
-- **High Performance:** Optimized for modern web applications with tools for caching, asynchronous programming, and load balancing.
-- **Cross-Platform Support:** Develop and deploy applications on Windows, macOS, and Linux.
-- **Secure:** Built-in support for authentication and authorization mechanisms like OAuth and Identity.
+## Table of Content
+- [Variables & Constants](#variables--constants)
+- [Overflowing](#overflowing)
+- [Scope](#scope)
+- [Type Conversion](#type-conversion)
+- [Operators](#operators)
+- [Comments](#comments)
 
 ---
 
-## What is CLR?
-CLR (Common Language Runtime) is the virtual machine component of the .NET framework. It manages the execution of .NET programs, providing important services such as memory management, exception handling, and security.
+## Variables & Constants
 
-### Key Features:
-- **Language Interoperability:** Allows code written in different languages (e.g., C#, F#, VB.NET) to work together seamlessly.
-- **Automatic Memory Management:** Manages garbage collection to free unused memory automatically.
-- **JIT Compilation:** Translates Intermediate Language (IL) code into native machine code for efficient execution.
-- **Security:** Enforces code access security and ensures safe execution of applications.
+### **Variable**
+A name given to a storage location in memory, used to hold data that can change during the execution of a program.
+
+### **Constant**
+An immutable value, meaning it cannot be changed after initialization.
+
+### **Declaring a Variable**
+```csharp
+int number;
+int number = 1;
+
+const float Pi = 3.14f;
+```
+
+> **[!NOTE]**  
+> You can't use a variable unless you initialize it.
+
+### **Naming Conventions**
+- **Camel Case**: Example: `firstName`  
+  Typically used for local variables and method arguments.
+- **Pascal Case**: Example: `FirstName`  
+  Typically used for method names, properties, and constants.
+- **Hungarian Notation**: Example: `strFirstName`  
+  Prefixes represent the type (e.g., `str` for string).
+
+> **[!TIP]**  
+> For local variables, use **Camel Case**. For constants, use **Pascal Case**.
+
+### **Primitive Types**
+![Primitive Types](https://i.ytimg.com/vi/Yvq1gua8SC4/maxresdefault.jpg)
+
+---
+
+## Overflowing
+Overflow occurs when a value exceeds the storage capacity of its data type.
+
+### Example
+```csharp
+byte b = 255;
+b += 1; // Overflow: b will now wrap around to 0.
+```
+
+### Handling Overflow
+To handle overflow explicitly, use the `checked` keyword:
+```csharp
+checked
+{
+    byte b = 255;
+    b += 1; // Will throw an exception.
+}
+```
+
+---
+
+## Scope
+Scope defines the visibility and lifetime of a variable in your program.
+
+### Types of Scope:
+1. **Block Scope**: Variables declared inside `{}` are only accessible within those braces.
+2. **Function Scope**: Variables declared inside a function are only accessible within that function.
+3. **Global Scope**: Variables declared outside of functions or classes are accessible throughout the program.
+
+### Example:
+```csharp
+{
+    int x = 10; // Block-scoped
+    Console.WriteLine(x); // Accessible here
+}
+// Console.WriteLine(x); // Not accessible here
+```
+
+---
+
+## Type Conversion
+Type conversion refers to converting a value from one type to another.
+
+### Implicit Conversion
+Performed automatically when there is no risk of data loss:
+```csharp
+int i = 42;
+float f = i; // Implicit conversion
+```
+
+### Explicit Conversion (Casting)
+Requires a cast operator:
+```csharp
+double d = 3.14;
+int i = (int)d; // Explicit conversion
+```
+
+### Conversion Methods
+- `Convert.ToInt32(value)`
+- `int.Parse(value)`
+- `TryParse` for safe conversion:
+```csharp
+int result;
+bool success = int.TryParse("123", out result);
+```
+
+---
+
+## Operators
+Operators perform operations on variables and values.
+
+### Arithmetic Operators
+- `+` Addition
+- `-` Subtraction
+- `*` Multiplication
+- `/` Division
+- `%` Modulus
+
+### Comparison Operators
+- `==` Equal to
+- `!=` Not equal to
+- `>` Greater than
+- `<` Less than
+- `>=` Greater than or equal to
+- `<=` Less than or equal to
+
+### Logical Operators
+- `&&` Logical AND
+- `||` Logical OR
+- `!` Logical NOT
+
+### Assignment Operators
+- `=` Assign
+- `+=` Add and assign
+- `-=` Subtract and assign
+- `*=` Multiply and assign
+- `/=` Divide and assign
+
+### Example:
+```csharp
+int a = 10, b = 20;
+int sum = a + b;
+bool isGreater = a > b;
+```
+
+---
+
+## Comments
+Comments are used to improve code readability and explain logic. They are ignored by the compiler.
+
+### Single-Line Comment
+```csharp
+// This is a single-line comment.
+```
+
+### Multi-Line Comment
+```csharp
+/*
+ This is a
+ multi-line comment.
+*/
+```
+
+### XML Documentation Comments
+Used to generate documentation for your code:
+```csharp
+/// <summary>
+/// This method adds two numbers.
+/// </summary>
+public int Add(int a, int b)
+{
+    return a + b;
+}
+```
+
+---
+
+By following these principles and guidelines, you can write clear and efficient code using primitive data types.
+
