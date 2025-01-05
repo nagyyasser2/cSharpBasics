@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace Basics
 {
@@ -6,43 +7,28 @@ namespace Basics
     {
         static void Main(string[] args)
         {
-            int[] nums = new int[] { 1, 2, 3 };
+            string fname = "nagy";
+            string lname = "yasser";
 
-            // Length
-            Console.WriteLine("Length: {0}" ,nums.Length);
+            var fullName = $"{fname} {lname}";
 
-            // IndexOf()
-            var idx = Array.IndexOf(nums, 3);
-            Console.WriteLine("Index of 3: {0}", idx);
+            Console.WriteLine(fullName);
 
-            // Clear()
-            Array.Clear(nums, 0, 1);
 
-            foreach (var item in nums)
+            var txtTest = "one,two,three";
+
+            var septxtTest = txtTest.Split(',');
+
+            foreach(var sept in septxtTest)
             {
-                Console.WriteLine(item);
+                Console.WriteLine(sept);
             }
 
-            // Copy()
-            int[] another = new int[3];
+            char[] ac = new char[] {  'a', 'b', 'c', 'd', 'e' };
 
-            Array.Copy(nums, another, another.Length);
+          var lss =  string.Join(" - ", ac);
 
-            foreach (var item in another)
-            {
-                Console.WriteLine(item);
-            }
-
-            // Sort()
-            Array.Sort(another);
-
-            foreach (var item in another)
-            {
-                Console.WriteLine(item);
-            }
-
-            // Reverse()
-            Array.Reverse(another); 
+            Console.WriteLine(lss);
         }
-    }
+    }   
 }
