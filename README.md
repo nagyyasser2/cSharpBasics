@@ -147,7 +147,7 @@ string result = sb.ToString();
 - Use string interpolation (`$""`) over concatenation for readability.
 - Prefer `StringBuilder` for repeated or complex modifications.
 - Use `string.IsNullOrEmpty` or `string.IsNullOrWhiteSpace` for null or empty checks.
-- Avoid hardcoding strings; use resources for localization.
+- Avoid  hardcoding strings; use resources for localization.
 
 ---
 
